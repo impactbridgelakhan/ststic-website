@@ -1503,3 +1503,119 @@ p {
     padding: 18px 6px 14px 6px;
   }
 }
+
+.founder-expertise {
+    margin: 12px 0 0 0;
+    padding: 0 0 0 18px;
+    color: #385170;
+    font-size: 0.97rem;
+    line-height: 1.6;
+}
+.founder-expertise li {
+    margin-bottom: 5px;
+}
+
+.founder-section.side-by-side {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 40px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+.founder-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+    max-width: 380px;
+    width: 100%;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 24px 24px 24px;
+    transition: box-shadow 0.22s;
+}
+.founder-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+    width: 100%;
+}
+.founder-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 14px rgba(52,152,219,0.15);
+    margin-bottom: 10px;
+}
+.founder-badge {
+    background: #3498db;
+    color: #fff;
+    padding: 6px 18px;
+    border-radius: 16px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    display: inline-block;
+}
+.founder-info h3 {
+    margin: 0 0 2px 0;
+    font-size: 1.22rem;
+    font-weight: 700;
+    color: #232946;
+    text-align: center;
+}
+.founder-info h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.04rem;
+    font-weight: 500;
+    color: #555b6e;
+    text-align: center;
+}
+.founder-info p {
+    margin: 0 0 10px 0;
+    font-size: 0.98rem;
+    color: #222;
+    text-align: center;
+}
+.founder-expertise {
+    margin: 10px 0 0 0;
+    padding-left: 18px;
+    font-size: 0.97rem;
+    color: #385170;
+    text-align: left;
+    width: 100%;
+}
+.founder-expertise li {
+    margin-bottom: 4px;
+}
+.founder-credentials {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+}
+.credential {
+    background: #eaf6fb;
+    color: #3498db;
+    border-radius: 10px;
+    padding: 4px 12px;
+    font-size: 0.92rem;
+    margin-bottom: 2px;
+    display: inline-block;
+}
+
+@media (max-width: 900px) {
+    .founder-section.side-by-side {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+    .founder-card {
+        max-width: 98vw;
+        min-width: unset;
+    }
+}
