@@ -65,33 +65,130 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Contact form submission
 const contactForm = document.getElementById('contact-form');
 const successMessage = document.getElementById('success-message');
+const errorMessage = document.getElementById('error-message');
+const fallbackContact = document.getElementById('fallback-contact');
 
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-
-        // Optional: Add form validation here if needed
-
-        // Simulate sending...
-        contactForm.querySelector('button[type="submit"]').disabled = true;
-
-        setTimeout(() => {
-            contactForm.reset();
-            if (successMessage) {
-                successMessage.style.display = 'flex';
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 4000);
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.innerHTML;
+        
+        // Validate required fields
+        const requiredFields = ['firstName', 'lastName', 'email', 'message'];
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            const input = contactForm.querySelector(`[name="${field}"]`);
+            if (!input.value.trim()) {
+                input.style.borderColor = '#e74c3c';
+                isValid = false;
+            } else {
+                input.style.borderColor = '';
             }
-            contactForm.querySelector('button[type="submit"]').disabled = false;
-        }, 1200);
+        });
+        
+        if (!isValid) {
+            showErrorMessage('Please fill in all required fields.');
+            return;
+        }
+        
+        // Show loading state
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
+        
+        // Hide previous messages
+        if (successMessage) successMessage.style.display = 'none';
+        if (errorMessage) errorMessage.style.display = 'none';
+        if (fallbackContact) fallbackContact.style.display = 'none';
+        
+        // Submit to Netlify
+        fetch('/', {
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+        })
+        .then(response => {
+            if (response.ok) {
+                // Success
+                contactForm.reset();
+                if (successMessage) {
+                    successMessage.style.display = 'flex';
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 8000);
+                }
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .catch(error => {
+            console.error('Form submission error:', error);
+            showErrorMessage('Form submission failed. Please try alternative contact methods below.');
+            // Show fallback contact options and populate with form data
+            if (fallbackContact) {
+                populateFallbackContacts(formData);
+                fallbackContact.style.display = 'block';
+            }
+        })
+        .finally(() => {
+            // Reset button state
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+        });
     });
 }
 
-// Optional: Close the success message when user clicks anywhere
+function showErrorMessage(message) {
+    if (errorMessage) {
+        errorMessage.querySelector('span').textContent = message;
+        errorMessage.style.display = 'flex';
+        setTimeout(() => {
+            errorMessage.style.display = 'none';
+        }, 10000);
+    }
+}
+
+function populateFallbackContacts(formData) {
+    const firstName = formData.get('firstName') || '';
+    const lastName = formData.get('lastName') || '';
+    const email = formData.get('email') || '';
+    const service = formData.get('service') || '';
+    const message = formData.get('message') || '';
+    const company = formData.get('company') || '';
+    
+    // Create email body
+    const emailBody = `Hello,%0D%0A%0D%0AI would like to inquire about your services.%0D%0A%0D%0AName: ${firstName} ${lastName}%0D%0A${company ? `Company: ${company}%0D%0A` : ''}${service ? `Service Interest: ${service}%0D%0A` : ''}%0D%0AMessage: ${message}%0D%0A%0D%0ABest regards,%0D%0A${firstName} ${lastName}${email ? `%0D%0A${email}` : ''}`;
+    
+    // Create WhatsApp message
+    const whatsappMessage = `Hello, I would like to inquire about your services.%0A%0AName: ${firstName} ${lastName}${company ? `%0ACompany: ${company}` : ''}${service ? `%0AService Interest: ${service}` : ''}%0A%0AMessage: ${message}`;
+    
+    // Update fallback links
+    const emailLink = fallbackContact.querySelector('.fallback-btn.email');
+    const whatsappLink = fallbackContact.querySelector('.fallback-btn.whatsapp');
+    
+    if (emailLink) {
+        emailLink.href = `mailto:impactbridgeconsultingpvt@gmail.com?subject=Business Inquiry from ${firstName} ${lastName}&body=${emailBody}`;
+    }
+    
+    if (whatsappLink) {
+        whatsappLink.href = `https://wa.me/918975547228?text=${whatsappMessage}`;
+    }
+}
+
+// Close messages when clicked
 if (successMessage) {
     successMessage.addEventListener('click', () => {
         successMessage.style.display = 'none';
+    });
+}
+
+if (errorMessage) {
+    errorMessage.addEventListener('click', () => {
+        errorMessage.style.display = 'none';
     });
 }
 

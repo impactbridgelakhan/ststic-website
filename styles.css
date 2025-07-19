@@ -1042,6 +1042,128 @@ p {
     display: flex;
     align-items: center;
     gap: 10px;
+    border: 1px solid #c3e6cb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.success-message:hover {
+    background: #c8e6c9;
+}
+
+/* Error Message */
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #f1aeb5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.error-message:hover {
+    background: #f1c2c7;
+}
+
+.error-message i {
+    color: #dc3545;
+}
+
+/* Fallback Contact Options */
+.fallback-contact {
+    margin-top: 30px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 2px dashed #dee2e6;
+}
+
+.fallback-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.fallback-header h4 {
+    color: #495057;
+    margin-bottom: 8px;
+}
+
+.fallback-header p {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.fallback-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fallback-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #495057;
+    transition: all 0.3s ease;
+}
+
+.fallback-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.fallback-btn.email {
+    border-left: 4px solid #007bff;
+}
+
+.fallback-btn.email:hover {
+    background: #f8f9ff;
+    border-left-color: #0056b3;
+}
+
+.fallback-btn.whatsapp {
+    border-left: 4px solid #25d366;
+}
+
+.fallback-btn.whatsapp:hover {
+    background: #f0fff4;
+    border-left-color: #1bd85d;
+}
+
+.fallback-btn.phone {
+    border-left: 4px solid #28a745;
+}
+
+.fallback-btn.phone:hover {
+    background: #f8fff9;
+    border-left-color: #1e7e34;
+}
+
+.fallback-btn i {
+    font-size: 1.1rem;
+}
+
+@media (max-width: 480px) {
+    .fallback-methods {
+        gap: 10px;
+    }
+    
+    .fallback-btn {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
 }
 
 /* Footer */

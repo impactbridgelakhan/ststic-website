@@ -173,11 +173,11 @@
                 <li>Strategic consulting</li>
                 <li>Rural enterprise development</li>
             </ul>
-            <div class="founder-credentials">
+            <!-- <div class="founder-credentials">
                 <span class="credential">M.A. Development Studies, IIT Guwahati</span>
                 <span class="credential">B.A. Economics, Fergusson College</span>
                 <span class="credential">Program Officer, Jaljeevika (2024-Present)</span>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Bhagyashri Jamadar, Founder & Director -->
@@ -502,7 +502,12 @@
         
         <div id="success-message" class="success-message" style="display: none;">
             <i class="fas fa-check-circle"></i>
-            <span>Thank you! Your message has been sent successfully.</span>
+            <span>Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.</span>
+        </div>
+        
+        <div id="error-message" class="error-message" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Form submission failed. Please try alternative contact methods below.</span>
         </div>
         
         <!-- Netlify contact form -->
@@ -546,10 +551,12 @@
                 <label for="service">Service Interest</label>
                 <select id="service" name="service">
                     <option value="">Select a service</option>
-                    <option value="strategic-consulting">Strategic Consulting</option>
-                    <option value="technology-solutions">Technology Solutions</option>
-                    <option value="data-analytics">Data Analytics & Insights</option>
-                    <option value="digital-transformation">Digital Transformation</option>
+                    <option value="csr-consulting">CSR Consulting</option>
+                    <option value="philanthropy-consulting">Philanthropy Consulting</option>
+                    <option value="nonprofit-consulting">Non-Profit Consulting</option>
+                    <option value="fpo-fpc-shg-consulting">FPO, FPC & SHG Consulting</option>
+                    <option value="microenterprise-support">Microenterprise Support</option>
+                    <option value="startup-india-compliance">Startup India Compliance</option>
                     <option value="other">Other</option>
                 </select>
             </div>
@@ -562,6 +569,28 @@
                 <i class="fas fa-paper-plane"></i>
             </button>
         </form>
+        
+        <!-- Fallback contact options (shown when form fails) -->
+        <div class="fallback-contact" id="fallback-contact" style="display: none;">
+            <div class="fallback-header">
+                <h4>Alternative Contact Methods</h4>
+                <p>Having trouble with the form? Contact us directly using these options:</p>
+            </div>
+            <div class="fallback-methods">
+                <a href="mailto:impactbridgeconsultingpvt@gmail.com?subject=Business Inquiry&body=Hello, I would like to discuss..." class="fallback-btn email">
+                    <i class="fas fa-envelope"></i>
+                    <span>Send Direct Email</span>
+                </a>
+                <a href="https://wa.me/918975547228?text=Hello, I would like to inquire about your services..." class="fallback-btn whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp Message</span>
+                </a>
+                <a href="tel:+918975547228" class="fallback-btn phone">
+                    <i class="fas fa-phone"></i>
+                    <span>Call Directly</span>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
