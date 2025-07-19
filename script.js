@@ -6,6 +6,13 @@ if (menuToggle && nav) {
     menuToggle.addEventListener('click', function() {
         nav.classList.toggle('nav-open');
         menuToggle.classList.toggle('open');
+        
+        // Prevent body scroll when menu is open
+        if (nav.classList.contains('nav-open')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
     });
 }
 
@@ -15,8 +22,30 @@ document.querySelectorAll('.nav-link').forEach(link => {
         if (window.innerWidth < 769) {
             nav.classList.remove('nav-open');
             menuToggle.classList.remove('open');
+            document.body.style.overflow = '';
         }
     });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', function(event) {
+    if (window.innerWidth < 769 && 
+        nav && nav.classList.contains('nav-open') && 
+        !nav.contains(event.target) && 
+        !menuToggle.contains(event.target)) {
+        nav.classList.remove('nav-open');
+        menuToggle.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+});
+
+// Reset menu state on window resize
+window.addEventListener('resize', function() {
+    if (window.innerWidth >= 769) {
+        nav.classList.remove('nav-open');
+        menuToggle.classList.remove('open');
+        document.body.style.overflow = '';
+    }
 });
 
 // Smooth scroll for anchor links

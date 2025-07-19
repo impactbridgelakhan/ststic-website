@@ -1223,16 +1223,21 @@ p {
         display: none;
         position: absolute;
         top: 70px;
-        right: 20px;
+        right: 15px;
+        left: 15px;
         background: white;
         box-shadow: 0 8px 24px rgba(44,62,80,0.13);
         border-radius: 16px;
         z-index: 999;
-        padding: 30px 30px 20px 30px;
-        min-width: 200px;
+        padding: 30px 20px 20px 20px;
+        max-width: calc(100vw - 30px);
+        width: calc(100vw - 30px);
         flex-direction: column;
         align-items: flex-start;
         animation: fadeInNav 0.3s;
+        box-sizing: border-box;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
     }
     .main-nav.nav-open {
         display: flex;
@@ -1244,11 +1249,23 @@ p {
     .nav-list {
         flex-direction: column;
         gap: 24px;
+        width: 100%;
     }
     .nav-cta {
         margin-top: 24px;
         width: 100%;
         text-align: left;
+    }
+    
+    /* Hamburger menu animation */
+    .mobile-menu-toggle.open .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .mobile-menu-toggle.open .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+    .mobile-menu-toggle.open .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
     }
 }
 
@@ -1258,12 +1275,25 @@ p {
         padding: 0 15px;
     }
     
+    .header {
+        position: fixed;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+    
+    .header-content {
+        padding: 15px 0;
+        position: relative;
+    }
+    
     .main-nav {
         display: none;
     }
     
     .mobile-menu-toggle {
         display: flex;
+        z-index: 1001;
     }
     
     .hero-title {
@@ -1373,6 +1403,22 @@ p {
     
     .cta-card {
         padding: 40px 25px;
+    }
+    
+    /* Additional mobile menu adjustments for very small screens */
+    .main-nav {
+        right: 10px;
+        left: 10px;
+        padding: 20px 15px 15px 15px;
+        max-width: calc(100vw - 20px);
+    }
+    
+    .nav-list {
+        gap: 20px;
+    }
+    
+    .nav-cta {
+        margin-top: 20px;
     }
 }
 
