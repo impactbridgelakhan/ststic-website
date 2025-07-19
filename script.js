@@ -83,3 +83,20 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Flip card on "Learn More" click for mobile/touch devices
+document.querySelectorAll('.btn-learn-more').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const card = btn.closest('.flip-card');
+    card.classList.toggle('flipped');
+  });
+});
+
+// Flip back when clicking outside or on the back side (mobile usability)
+document.querySelectorAll('.flip-card-back').forEach(back => {
+  back.addEventListener('click', function() {
+    const card = back.closest('.flip-card');
+    card.classList.remove('flipped');
+  });
+});
